@@ -1,9 +1,26 @@
-// import client from '../utils/client';
+import client from '../utils/client';
+import { emptyAuthors } from '../pages/authors';
 
-// const endpoint = client.databaseURL;
+const endpoint = client.databaseURL;
 
-// FIXME:  GET ALL AUTHORS
-const getAuthors = () => {};
+// GET ALL AUTHORS
+const getAuthors = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'applications/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (Object.values(data).length === 0) {
+        emptyAuthors();
+      } else {
+        resolve(Object.values(data));
+      }
+    })
+    .catch(reject);
+});
 
 // FIXME: CREATE AUTHOR
 const createAuthor = () => {};
