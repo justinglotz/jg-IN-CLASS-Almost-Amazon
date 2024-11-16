@@ -6,12 +6,11 @@ const viewAuthor = (obj) => {
 
   const domString = `
   <div class="text-white">
-    <h5>${obj.first_name} ${obj.last_name}</h5>
-    <p class="card-text bold">${obj.favorite ? '<span class="badge badge-info favorite-badge"><i class="fa-solid fa-heart" aria-hidden="true"></i> Favorite</span>' : ''}</p>
-    <p class="email">Author Email: ${obj.email}</p>
+    <h5>${obj.first_name} ${obj.last_name} ${obj.favorite ? '<span class="badge bg-danger"><i class="fa fa-heart" aria-hidden="true"></i></span>' : ''}</p></h5>
+    <p id="author-email">Author Email: <a href="mailto:${obj.email}">${obj.email}</a></p>
     <i class="fas fa-edit btn btn-info" id="update-author-btn--${obj.firebaseKey}"></i>
     <i class="btn btn-danger fas fa-trash-alt" id="delete-author-btn--${obj.firebaseKey}"></i>
-    <h5>Books: </h5>
+    <h5 id="heading-for-authors-page">Books</h5>
   </div>`;
   let bookString = '';
   obj.booksByThisAuthor.forEach((book) => {
