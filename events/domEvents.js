@@ -2,8 +2,11 @@ import { deleteBook, getBooks, getSingleBook } from '../api/bookData';
 import { showBooks } from '../pages/books';
 import addBookForm from '../components/forms/addBookForm';
 import addAuthorForm from '../components/forms/addAuthorForm';
-import { deleteSingleAuthor, getAuthors } from '../api/authorData';
+import { deleteSingleAuthor, getAuthors, getSingleAuthor } from '../api/authorData';
 import { showAuthors } from '../pages/authors';
+import { getBookDetails, getAuthorDetails } from '../api/mergedData';
+import viewBook from '../pages/viewBook';
+import viewAuthor from '../pages/viewAuthor';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -32,13 +35,20 @@ const domEvents = () => {
       getSingleBook(firebaseKey).then((bookObj) => addBookForm(bookObj));
     }
 
-    // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
+    // CLICK EVENT FOR VIEW BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
-      console.warn('VIEW BOOK', e.target.id);
-      console.warn(e.target.id.split('--'));
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getBookDetails(firebaseKey).then(viewBook);
     }
 
-    // FIXME: ADD CLICK EVENT FOR DELETING AN AUTHOR
+    // CLICK EVENT FOR SHOWING AUTHOR DETAILS
+    if (e.target.id.includes('view-author-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      getAuthorDetails(firebaseKey).then(viewAuthor);
+    }
+
+    // ADD CLICK EVENT FOR DELETING AN AUTHOR
     if (e.target.id.includes('delete-author-btn')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
@@ -55,7 +65,12 @@ const domEvents = () => {
     if (e.target.id.includes('add-author-btn')) {
       addAuthorForm();
     }
-    // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
+    // ADD CLICK EVENT FOR EDITING AN AUTHOR
+    if (e.target.id.includes('update-author-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getSingleAuthor(firebaseKey).then((authorObj) => addAuthorForm(authorObj));
+    }
   });
 };
 
