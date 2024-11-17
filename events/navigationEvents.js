@@ -36,7 +36,10 @@ const navigationEvents = () => {
   // STRETCH: SEARCH
   document.querySelector('#search').addEventListener('keyup', (e) => {
     const searchValue = document.querySelector('#search').value.toLowerCase();
-    console.warn(searchValue);
+    getBooks().then((books) => {
+      const filteredBooks = books.filter((book) => book.title.toLowerCase().includes(searchValue));
+      showBooks(filteredBooks);
+    });
 
     // WHEN THE USER PRESSES ENTER, MAKE THE API CALL AND CLEAR THE INPUT
     if (e.keyCode === 13) {

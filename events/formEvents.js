@@ -1,5 +1,7 @@
 import { createAuthor, getAuthors, updateAuthor } from '../api/authorData';
-import { createBook, updateBook, getBooks } from '../api/bookData';
+import {
+  createBook, updateBook, getBooks
+} from '../api/bookData';
 import { showAuthors } from '../pages/authors';
 import { showBooks } from '../pages/books';
 
