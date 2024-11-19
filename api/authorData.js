@@ -1,7 +1,7 @@
 import client from '../utils/client';
 // import { emptyAuthors } from '../pages/authors';
 
-// TODO: Fix empty authors bug
+// TODO: Fix empty authors bug on line 19
 
 const endpoint = client.databaseURL;
 
