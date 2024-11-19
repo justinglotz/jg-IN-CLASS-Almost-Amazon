@@ -28,14 +28,14 @@ const domEvents = (user) => {
       addBookForm({}, user);
     }
 
-    // CLICK EVENT EDITING/UPDATING A BOOK
+    // CLICK EVENT FOR EDITING/UPDATING A BOOK
     if (e.target.id.includes('edit-book-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
 
       getSingleBook(firebaseKey).then((bookObj) => addBookForm(bookObj));
     }
 
-    // CLICK EVENT FOR VIEW BOOK DETAILS
+    // CLICK EVENT FOR VIEWING BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
 
@@ -55,12 +55,12 @@ const domEvents = (user) => {
         const [, firebaseKey] = e.target.id.split('--');
 
         deleteAuthorBooksRelationship(firebaseKey).then(() => {
-          getAuthors().then(showAuthors);
+          getAuthors(user.uid).then(showAuthors);
         });
       }
     }
 
-    // ADD CLICK EVENT FOR SHOWING FORM FOR ADDING AN AUTHOR
+    // CLICK EVENT FOR SHOWING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('add-author-btn')) {
       addAuthorForm();
     }

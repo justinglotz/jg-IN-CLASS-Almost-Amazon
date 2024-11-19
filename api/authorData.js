@@ -1,4 +1,5 @@
 import client from '../utils/client';
+// API CALLS FOR AUTHORS
 // import { emptyAuthors } from '../pages/authors';
 
 // TODO: Fix empty authors bug on line 19

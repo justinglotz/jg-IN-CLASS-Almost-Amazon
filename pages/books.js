@@ -1,11 +1,13 @@
 import clearDom from '../utils/clearDom';
 import renderToDOM from '../utils/renderToDom';
 
+// DISPLAYED IF BOOKS LIST IS EMPTY
 const emptyBooks = () => {
   const domString = '<h1>No Books</h1>';
   renderToDOM('#store', domString);
 };
 
+// DISPLAYED IF BOOKS LIST IS POPULATED
 const showBooks = (array) => {
   clearDom();
 

@@ -1,8 +1,7 @@
-/* eslint-disable */
-
 import { getAuthors } from '../../api/authorData';
 import renderToDOM from '../../utils/renderToDom';
 
+// Dropdown form to select an author to assign to a new book
 const selectAuthor = (authorId, user) => {
   let domString = `<label for="author">Select an Author</label>
     <select class="form-control" id="author_id" required>
@@ -20,7 +19,7 @@ const selectAuthor = (authorId, user) => {
 
     domString += '</select>';
 
-  renderToDOM('#select-author', domString);
+    renderToDOM('#select-author', domString);
   });
 };
 

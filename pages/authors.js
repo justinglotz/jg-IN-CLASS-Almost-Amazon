@@ -1,11 +1,13 @@
 import clearDom from '../utils/clearDom';
 import renderToDOM from '../utils/renderToDom';
 
+// DISPLAYED IF AUTHORS LIST IS EMPTY
 const emptyAuthors = () => {
   const domString = '<h1>No Authors</h1>';
   renderToDOM('#store', domString);
 };
 
+// DISPLAYED IF AUTHORS LIST IS POPULATED
 const showAuthors = (array) => {
   clearDom();
 
