@@ -1,11 +1,11 @@
 import client from '../utils/client';
-import { emptyAuthors } from '../pages/authors';
+// API CALLS FOR AUTHORS
 
 const endpoint = client.databaseURL;
 
 // GET ALL AUTHORS
-const getAuthors = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/authors.json`, {
+const getAuthors = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'applications/json',
@@ -13,25 +13,24 @@ const getAuthors = () => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (Object.values(data).length === 0) {
-        emptyAuthors();
-      } else {
-        resolve(Object.values(data));
-      }
+      resolve(Object.values(data));
     })
     .catch(reject);
 });
 
 // GET FAVORITE AUTHORS
-const favoriteAuthors = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/authors.json?orderBy="favorite"&equalTo=true`, {
+const favoriteAuthors = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
+    .then((data) => {
+      const favorite = Object.values(data).filter((item) => item.favorite);
+      resolve(favorite);
+    })
     .catch(reject);
 });
 
