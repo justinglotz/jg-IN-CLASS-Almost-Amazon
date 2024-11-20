@@ -1,8 +1,5 @@
 import client from '../utils/client';
 // API CALLS FOR AUTHORS
-// import { emptyAuthors } from '../pages/authors';
-
-// TODO: Fix empty authors bug on line 19
 
 const endpoint = client.databaseURL;
 
@@ -16,11 +13,7 @@ const getAuthors = (uid) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (Object.values(data).length === 0) {
-        // emptyAuthors();
-      } else {
-        resolve(Object.values(data));
-      }
+      resolve(Object.values(data));
     })
     .catch(reject);
 });

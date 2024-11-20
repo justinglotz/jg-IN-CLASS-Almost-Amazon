@@ -1,4 +1,5 @@
 import client from '../utils/client';
+import { showBooks } from '../pages/books';
 // API CALLS FOR BOOKS
 
 const endpoint = client.databaseURL;
@@ -92,7 +93,14 @@ const booksOnSale = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// TODO: STRETCH...SEARCH BOOKS
+// SEARCH BOOKS
+const searchBooks = (user) => {
+  const searchValue = document.querySelector('#search').value.toLowerCase();
+  getBooks(user.uid).then((books) => {
+    const filteredBooks = books.filter((book) => book.title.toLowerCase().includes(searchValue));
+    showBooks(filteredBooks);
+  });
+};
 
 export {
   getBooks,
@@ -100,5 +108,6 @@ export {
   booksOnSale,
   deleteBook,
   getSingleBook,
-  updateBook
+  updateBook,
+  searchBooks
 };
