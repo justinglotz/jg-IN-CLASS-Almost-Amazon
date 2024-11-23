@@ -34,6 +34,7 @@ const navigationEvents = (user) => {
   document.querySelector('#search').addEventListener('keyup', (e) => {
     if (e.keyCode === 13) {
       searchBooks(user);
+      document.querySelector('#search').value = '';
     }
   });
 };
