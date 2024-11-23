@@ -31,8 +31,10 @@ const navigationEvents = (user) => {
   });
 
   // SEARCH FOR BOOKS
-  document.querySelector('#search').addEventListener('keyup', () => {
-    searchBooks(user);
+  document.querySelector('#search').addEventListener('keyup', (e) => {
+    if (e.keyCode === 13) {
+      searchBooks(user);
+    }
   });
 };
 
